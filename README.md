@@ -25,147 +25,156 @@ Step 5: Working with the MainActivity2 File
 ## PROGRAM:
 ```
 /*
-Program to print the text “ExplicitIntent”.
+Program to find the factorial of a number using explicit intent.
 Developed by: Sabitha P
 Registeration Number : 212222040137
 */
 ```
-### In activity_main.xml
+### In activity1.xml
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BB9DF1"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is First Activity"
-        android:textColor="#FF5722"
-        android:textSize="34sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.601" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Click for Second Activity"
-        android:onClick="newscreen"
+    <EditText
+        android:id="@+id/input_field"
+        android:layout_width="252dp"
+        android:layout_height="48dp"
+        android:hint="Enter a number"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Explicit Intent"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/factorial_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#3F51B5"
+        android:text="FIND FACTORIAL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_field" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="217dp"
+        android:layout_height="46dp"
+        android:text="FACTORIAL FINDER"
+        android:textColor="#673AB7"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/input_field"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 ### In MainActivity.java
 ```
 package com.example.explicitintent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import android.os.Bundle;
-import android.view.View;
-import android.content.Intent;
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity1);
-    }
-    public void newscreen(View view) {
-        Intent i = new Intent(getApplicationContext(), MainActivity2.class);
-        startActivity(i);
+
+        // Get references to UI elements
+        final EditText inputField = findViewById(R.id.input_field);
+        Button factorialButton = findViewById(R.id.factorial_button);
+
+        // Set up the "Explicit Intent" button
+        factorialButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get the input number from the text field
+                int inputNumber = Integer.parseInt(inputField.getText().toString());
+
+                // Create an Intent to start the FactorialActivity
+                Intent explicitIntent = new Intent(MainActivity.this, MainActivity2.class);
+                // Pass the input number as an extra
+                explicitIntent.putExtra("input_number", inputNumber);
+
+                // Start the FactorialActivity
+                startActivity(explicitIntent);
+            }
+        });
     }
 }
 ```
 
-### In activity_main2.xml
+### In activity_main1.xml
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BB9DF1"
     tools:context=".MainActivity2">
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/result_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is Second Activity"
-        android:textColor="#FF5722"
+        android:textColor="#9C27B0"
         android:textSize="34sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.601" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click for First Activity"
-        android:onClick="homeScreen"
+        android:text="BACK"
+        android:onClick="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Explicit Intent"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/result_text_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
 ### In MainActivity2.java
 ```
+
 package com.example.explicitintent;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.math.BigInteger;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -173,21 +182,33 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Get the input number from the Intent extra
+        int inputNumber = getIntent().getIntExtra("input_number", 0);
+
+        // Calculate the factorial of the input number using BigInteger
+        BigInteger factorial = BigInteger.ONE;
+        for (int i = 2; i <= inputNumber; i++) {
+            factorial = factorial.multiply(BigInteger.valueOf(i));
+        }
+
+        // Display the factorial result in a TextView
+        TextView resultTextView = findViewById(R.id.result_text_view);
+        resultTextView.setText("Factorial of " + inputNumber + " is: " + factorial);
     }
 
-    public void homeScreen(View view) {
+    public void back(View view) {
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
-
     }
 }
 ```
 ## OUTPUT
-![WhatsApp Image 2024-03-14 at 06 57 18_d35f6e58](https://github.com/sabithapaulraj/ExplicitIntent-MAD/assets/118343379/50929013-20a4-4856-aee8-1fcd055a287e)
-![WhatsApp Image 2024-03-14 at 06 57 19_32104a35](https://github.com/sabithapaulraj/ExplicitIntent-MAD/assets/118343379/5badfd64-5a6d-432e-883b-3f8d17c81e67)
+![WhatsApp Image 2024-03-17 at 21 14 40_65d4e92a](https://github.com/sabithapaulraj/ExplicitIntent-MAD/assets/118343379/accd5111-a814-45e7-89a8-810b6681c688)
+![WhatsApp Image 2024-03-17 at 21 14 40_bdd2071b](https://github.com/sabithapaulraj/ExplicitIntent-MAD/assets/118343379/706c629c-6d07-4d95-a665-3e6c8ff790dd)
 
 
 ## RESULT
-Thus a Simple Android Application create a Explicit Intents using Android Studio is developed and executed successfully.
+Thus a Simple Android Application to find factorial of a given number using Explicit Intents in Android Studio is developed and executed successfully.
 
 
