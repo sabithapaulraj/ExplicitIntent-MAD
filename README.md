@@ -207,6 +207,10 @@ public class MainActivity2 extends AppCompatActivity {
 ![WhatsApp Image 2024-03-17 at 21 14 40_65d4e92a](https://github.com/sabithapaulraj/ExplicitIntent-MAD/assets/118343379/accd5111-a814-45e7-89a8-810b6681c688)
 ![WhatsApp Image 2024-03-17 at 21 14 40_bdd2071b](https://github.com/sabithapaulraj/ExplicitIntent-MAD/assets/118343379/706c629c-6d07-4d95-a665-3e6c8ff790dd)
 
+## Working in Android Studio
+![Screenshot 2024-04-20 185541](https://github.com/sabithapaulraj/ExplicitIntent-MAD/assets/118343379/05ccaea1-c1a3-4a39-81b2-0a4183867351)
+
+
 
 ## RESULT
 Thus a Simple Android Application to find factorial of a given number using Explicit Intents in Android Studio is developed and executed successfully.
